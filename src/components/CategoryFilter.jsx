@@ -1,4 +1,8 @@
-export default function CategoryFilter({ activeCategory, setActiveCategory }) {
+export default function CategoryFilter({ 
+  activeCategory, 
+  setActiveCategory,
+  darkMode = false 
+}) {
   const categories = [
     { id: "all", name: "All", emoji: "🌐" },
     { id: "learning", name: "Learning", emoji: "📚" },
@@ -14,8 +18,12 @@ export default function CategoryFilter({ activeCategory, setActiveCategory }) {
           onClick={() => setActiveCategory(category.id)}
           className={`flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
             activeCategory === category.id
-              ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-              : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+              ? darkMode
+                ? "bg-blue-800/90 text-blue-100 shadow-inner"
+                : "bg-blue-600 text-white shadow-sm"
+              : darkMode
+                ? "bg-gray-700/50 text-gray-300 hover:bg-gray-700/70 border border-gray-600/30"
+                : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-200/80 shadow-xs"
           }`}
           aria-label={`Filter by ${category.name}`}
         >

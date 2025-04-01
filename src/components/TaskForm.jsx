@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-export default function TaskForm({ addTask }) {
+export default function TaskForm({ addTask, darkMode = false }) {
   const [task, setTask] = useState("");
   const [deadline, setDeadline] = useState(() => {
     const defaultDate = new Date();
@@ -29,48 +29,107 @@ export default function TaskForm({ addTask }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-6 space-y-3">
-      <input
-        type="text"
-        value={task}
-        onChange={(e) => setTask(e.target.value)}
-        placeholder="What's your plan?"
-        className="w-full p-2 border rounded dark:bg-gray-700"
-        aria-label="Task description"
-      />
-      <div className="grid grid-cols-3 gap-2">
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Task Input */}
+      <div>
         <input
-          type="date"
-          value={deadline}
-          onChange={(e) => setDeadline(e.target.value)}
-          className="p-2 border rounded dark:bg-gray-700"
-          min={new Date().toISOString().split("T")[0]}
-          aria-label="Due date"
+          type="text"
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+          placeholder="What's your plan?"
+          className={`w-full p-3 rounded-lg border ${
+            darkMode
+              ? "bg-gray-700/50 border-gray-600/50 text-gray-100 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/50"
+              : "bg-white border-gray-300 text-gray-800 placeholder-gray-500 focus:border-blue-500 focus:ring-blue-500"
+          } transition-colors focus:ring-2 focus:outline-none`}
+          aria-label="Task description"
         />
-        <select
-          value={priority}
-          onChange={(e) => setPriority(e.target.value)}
-          className="p-2 border rounded dark:bg-gray-700"
-          aria-label="Priority"
-        >
-          <option value="high">High</option>
-          <option value="medium">Medium</option>
-          <option value="low">Low</option>
-        </select>
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="p-2 border rounded dark:bg-gray-700"
-          aria-label="Category"
-        >
-          <option value="learning">Learning</option>
-          <option value="work">Work</option>
-          <option value="personal">Personal</option>
-        </select>
       </div>
+
+      {/* Options Row */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        {/* Date Input */}
+        <div>
+          <label
+            className={`block text-xs mb-1 ${
+              darkMode ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
+            Due Date
+          </label>
+          <input
+            type="date"
+            value={deadline}
+            onChange={(e) => setDeadline(e.target.value)}
+            className={`w-full p-2.5 rounded-lg border ${
+              darkMode
+                ? "bg-gray-700/50 border-gray-600/50 text-gray-100 focus:border-blue-500 focus:ring-blue-500/50"
+                : "bg-white border-gray-300 text-gray-800 focus:border-blue-500 focus:ring-blue-500"
+            } transition-colors focus:ring-2 focus:outline-none`}
+            min={new Date().toISOString().split("T")[0]}
+            aria-label="Due date"
+          />
+        </div>
+
+        {/* Priority Select */}
+        <div>
+          <label
+            className={`block text-xs mb-1 ${
+              darkMode ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
+            Priority
+          </label>
+          <select
+            value={priority}
+            onChange={(e) => setPriority(e.target.value)}
+            className={`w-full p-2.5 rounded-lg border ${
+              darkMode
+                ? "bg-gray-700/50 border-gray-600/50 text-gray-100 focus:border-blue-500 focus:ring-blue-500/50"
+                : "bg-white border-gray-300 text-gray-800 focus:border-blue-500 focus:ring-blue-500"
+            } transition-colors focus:ring-2 focus:outline-none`}
+            aria-label="Priority"
+          >
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+
+        {/* Category Select */}
+        <div>
+          <label
+            className={`block text-xs mb-1 ${
+              darkMode ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
+            Category
+          </label>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className={`w-full p-2.5 rounded-lg border ${
+              darkMode
+                ? "bg-gray-700/50 border-gray-600/50 text-gray-100 focus:border-blue-500 focus:ring-blue-500/50"
+                : "bg-white border-gray-300 text-gray-800 focus:border-blue-500 focus:ring-blue-500"
+            } transition-colors focus:ring-2 focus:outline-none`}
+            aria-label="Category"
+          >
+            <option value="learning">Learning</option>
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Submit Button */}
       <button
         type="submit"
-        className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition-colors"
+        className={`w-full py-3 px-4 rounded-lg font-medium transition-colors ${
+          darkMode
+            ? "bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/20"
+            : "bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/10"
+        }`}
       >
         Add Task
       </button>
@@ -80,4 +139,9 @@ export default function TaskForm({ addTask }) {
 
 TaskForm.propTypes = {
   addTask: PropTypes.func.isRequired,
+  darkMode: PropTypes.bool,
+};
+
+TaskForm.defaultProps = {
+  darkMode: false,
 };

@@ -68,9 +68,14 @@ export default function App() {
             <TaskForm addTask={addTask} />
           </div>
 
+          {/* <CategoryFilter
+            activeCategory={activeCategory}
+            setActiveCategory={setActiveCategory}
+          /> */}
           <CategoryFilter
             activeCategory={activeCategory}
             setActiveCategory={setActiveCategory}
+            darkMode={darkMode}
           />
 
           {/* Animated Progress Bar */}
