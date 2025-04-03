@@ -75,9 +75,6 @@ src/
 4. Push to branch (`git push origin feature/AmazingFeature`)  
 5. Open a Pull Request  
 
-## 📜 License
-
-MIT © [Your Name]  
 
 ---
 
