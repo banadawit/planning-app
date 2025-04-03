@@ -1,6 +1,6 @@
 # 📝 Planify - Smart Task Manager
 
-![App Screenshot](https://i.imgur.com/JfQhWnP.png)  
+
 *A beautiful task planner with priority management and dark mode*
 
 ## ✨ Features
