@@ -23,7 +23,7 @@
 ## 🚀 Deployment
 
 Hosted on Vercel:  
-[![Vercel](https://img.shields.io/badge/Vercel-Deployed-black?style=flat&logo=vercel)](https://planify.vercel.app)
+[![Vercel](https://img.shields.io/badge/Vercel-Deployed-black?style=flat&logo=vercel)](https://planning-app-bana-dawits-projects.vercel.app/)
 
 ## 🛠️ Tech Stack
 
@@ -39,7 +39,7 @@ Hosted on Vercel:
 
 1. Clone repo:
    ```bash
-   git clone https://github.com/yourusername/planning-app.git
+   git clone https://github.com/banadawit/planning-app.git
    ```
 
 2. Install dependencies:
